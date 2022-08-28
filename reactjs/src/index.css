@@ -15,3 +15,20 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-light-very-light-gray: 0deg 0% 98%;
+    --color-light-very-light-grayish-blue: 236deg 33% 92%;
+    --color-light-light-grayish-blue: 233deg 11% 84%;
+    --color-light-dark-grayish-blue: 236deg 9% 61%;
+    --color-light-very-dark-grayish-blue: 235deg 19% 35%;
+
+    --color-dark-very-dark-blue: 235deg 21% 11%;
+    --color-dark-very-dark-desaturated-blue: 235deg 24% 19%;
+    --color-dark-light-grayish-blue: 234deg 39% 85%;
+    --color-dark-light-grayish-blue-hover: 236deg 33% 92%;
+    --color-dark-dark-grayish-blue: 234deg 11% 52%;
+    --color-dark-very-dark-grayish-blue: 233deg 14% 35%; /* or 237deg 14% 26% */
+  }
+}
