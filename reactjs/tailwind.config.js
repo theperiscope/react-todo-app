@@ -9,7 +9,20 @@ module.exports = {
       height: {
         '300': '300px'
       },
+      width: {
+        'desktop': '540px',
+        'mobile': '330px'
+      },
+      fontSize: {
+
+      },
+      letterSpacing: {
+        appTitle: '0.20em'
+      },
       colors: {
+        'light-desktop-background-color': '#fafafa',
+        'light-control-background-color': '#ffffff',
+        'light-placeholder-color': '#9e9da1',
         'light-very-light-gray': 'hsl(var(--color-light-very-light-gray) / <alpha-value>)',
         'light-very-light-grayish-blue': 'hsl(var(--color-light-very-light-grayish-blue) / <alpha-value>)',
         'light-light-grayish-blue': 'hsl(var(--color-light-light-grayish-blue) / <alpha-value>)',
@@ -28,12 +41,14 @@ module.exports = {
         'desktopLight': "url('./images/bg-desktop-light.jpg')",
         'mobileDark': "url('./images/bg-mobile-dark.jpg')",
         'mobileLight': "url('./images/bg-mobile-light.jpg')"
+      },
+      screens: {
+        'xs': '375px',
+        '2xl': '1440px'
       }
-    },
-    screens: {
-      'xs': '375px',
-      '2xl': '1440px'
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }

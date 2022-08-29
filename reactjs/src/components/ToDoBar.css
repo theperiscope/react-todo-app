@@ -1,0 +1,11 @@
+.x1 {
+  @apply sm:rounded-bl-md xs:rounded-bl-md
+ }
+
+ .x2 {
+  @apply sm:rounded-br-md xs:rounded-br-md
+ }
+
+ .x3 {
+  @apply rounded-md
+ }
