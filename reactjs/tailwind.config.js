@@ -23,6 +23,7 @@ module.exports = {
         'light-desktop-background-color': '#fafafa',
         'light-control-background-color': '#ffffff',
         'light-placeholder-color': '#9e9da1',
+        'light-active-filter-color': '#5f7ebe',
         'light-very-light-gray': 'hsl(var(--color-light-very-light-gray) / <alpha-value>)',
         'light-very-light-grayish-blue': 'hsl(var(--color-light-very-light-grayish-blue) / <alpha-value>)',
         'light-light-grayish-blue': 'hsl(var(--color-light-light-grayish-blue) / <alpha-value>)',

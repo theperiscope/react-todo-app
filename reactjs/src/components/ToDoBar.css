@@ -9,3 +9,15 @@
  .x3 {
   @apply rounded-md
  }
+
+ .filter {
+  @apply text-light-placeholder-color text-[14px]
+ }
+
+ .filter.active {
+  @apply text-light-active-filter-color font-bold
+ }
+
+ .filter:hover {
+  @apply text-black
+ }

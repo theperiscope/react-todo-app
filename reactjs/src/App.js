@@ -27,6 +27,7 @@ const getInitialTheme = () => {
 function App() {
   const [theme, setTheme] = useState(getInitialTheme())
   const value = useMemo(() => ({ theme, setTheme }), [theme])
+  const [filterName, setFilterName] = useState('all')
 
   const [todos, setToDos] = useState([
     { id: 'task-1', label: "Complete online JavaScript course", checked: true },
@@ -36,6 +37,15 @@ function App() {
     { id: 'task-5', label: "Pick up groceries", checked: false },
     { id: 'task-6', label: "Complete Todo App on Frontend Mentor", checked: false },
   ])
+
+  const onFilterToDo = (e) => {
+    setFilterName(e)
+  }
+
+  const onClearCompletedToDos = () => {
+    const filteredToDos = todos.filter(todo => !todo.checked)
+    setToDos(filteredToDos)
+  }
 
   const onAddToDo = (newToDo) => {
     setToDos(currentState => [...currentState, newToDo])
@@ -71,8 +81,8 @@ function App() {
           <div className='mt-[22px] text-right'><NewChangeThemeButton /></div>
           <div className='grid grid-cols-1 gap-0 mt-[8px] content-start w-mobile sm:w-desktop'>
             <ToDoAdd onAdd={onAddToDo} />
-            <ToDoItemList todos={todos} onChangeToDo={onChangeToDo} onDeleteToDo={onDeleteToDo} />
-            <ToDoBar todos={todos} />
+            <ToDoItemList filterName={filterName} todos={todos} onChangeToDo={onChangeToDo} onDeleteToDo={onDeleteToDo} />
+            <ToDoBar currentFilter={filterName} todos={todos} onFilter={onFilterToDo} onClearCompleted={onClearCompletedToDos} />
           </div>
         </div>
       </div>

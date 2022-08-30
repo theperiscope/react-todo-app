@@ -17,6 +17,9 @@
   cursor: pointer;
   margin-left:10px;
   margin-right:16px;
+
+  @apply dark:bg-dark-very-dark-desaturated-blue dark:border-gray-600
+
 }
 
 input[type="checkbox"]:focus{
@@ -38,6 +41,7 @@ input[type="checkbox"]:hover::after {
   padding:11px;
   border-radius: 100%;
   background: #fff;
+  @apply dark:bg-dark-very-dark-desaturated-blue dark:border-gray-600
 }
 
 input[type="checkbox"]:checked {
