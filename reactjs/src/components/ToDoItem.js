@@ -4,12 +4,11 @@ import './ToDoItem.css'
 function ToDoItem({ id, label, checked, onChange, onDelete, onDragDrop }) {
 
   const onDragStart = (e, id) => {
-    //console.log('onDragStart', id)
     e.dataTransfer.setData('id', id)
   }
 
-  const onDragEnter = (e, id) => {
-    //console.log('onDragEnter', id)
+  // By default, data/elements cannot be dropped in other elements. To allow a drop, we must prevent the default handling of the element
+  const onDragOver = (e, id) => {
     e.preventDefault()
   }
 
@@ -23,7 +22,7 @@ function ToDoItem({ id, label, checked, onChange, onDelete, onDragDrop }) {
   return (
     <div draggable="true"
       onDragStart={(e) => onDragStart(e, id)}
-      onDragOver={(e) => onDragEnter(e, id)}
+      onDragOver={(e) => onDragOver(e, id)}
       onDrop={(e) => onDrop(e, id)}
       className="checkbox-wrapper flex items-center border-b border-light-very-dark-grayish-blue-300 dark:border-dark-very-dark-grayish-blue bg-light-control-background-color dark:bg-dark-very-dark-desaturated-blue px-4 py-[4px] m-0">
       <input

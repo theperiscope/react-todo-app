@@ -16,7 +16,7 @@ function ToDoBar({ currentFilter, todos, onFilter, onClearCompleted }) {
         </ul>
       </div>
       <div className='x3 bg-light-control-background-color dark:bg-dark-very-dark-desaturated-blue px-4 pt-4 pb-3 m-0 order-3 sm:order-2 text-center sm:text-left  col-span-2 sm:col-span-1 mt-3 sm:mt-0 text-sm text-gray-900 dark:text-gray-300'>
-        <div class="flex justify-between">
+        <div className="flex justify-between">
             <div className={`filter ${currentFilter === 'all' && 'active'}`}><button onClick={() => onFilter('all')}>All</button></div>
             <div className={`filter ${currentFilter === 'active' && 'active'}`}><button onClick={() => onFilter('active')}>Active</button></div>
             <div className={`filter ${currentFilter === 'completed' && 'active'}`}><button onClick={() => onFilter('completed')}>Completed</button></div>
