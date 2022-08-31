@@ -63,6 +63,27 @@ function App() {
     setToDos(currentState => currentState.filter(todo => todo.id !== id))
   }
 
+  const arrayMove = (arr, fromIndex, toIndex) => {
+    // shouldn't happen but this is to add elements if toIndex is past number of elements in the array
+    if (toIndex >= arr.length) {
+      var toAdd = toIndex - arr.length + 1
+      while (toAdd--) {
+        arr.push(undefined)
+      }
+    }
+    arr.splice(toIndex, 0, arr.splice(fromIndex, 1)[0])
+    return arr // for testing
+  }
+
+  const onDragDropToDo = (from, to) => {
+    const fromIndex = todos.findIndex(x => x.id === from)
+    const toIndex = todos.findIndex(x => x.id === to)
+
+    const updatedToDos = [...todos]
+    arrayMove(updatedToDos, fromIndex, toIndex)
+    setToDos(updatedToDos)
+  }
+
   useEffect(() => {
     // https://tailwindcss.com/docs/dark-mode
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -81,7 +102,7 @@ function App() {
           <div className='mt-[22px] text-right'><NewChangeThemeButton /></div>
           <div className='grid grid-cols-1 gap-0 mt-[8px] content-start w-mobile sm:w-desktop'>
             <ToDoAdd onAdd={onAddToDo} />
-            <ToDoItemList filterName={filterName} todos={todos} onChangeToDo={onChangeToDo} onDeleteToDo={onDeleteToDo} />
+            <ToDoItemList filterName={filterName} todos={todos} onChangeToDo={onChangeToDo} onDeleteToDo={onDeleteToDo} onDragDropToDo={onDragDropToDo} />
             <ToDoBar currentFilter={filterName} todos={todos} onFilter={onFilterToDo} onClearCompleted={onClearCompletedToDos} />
           </div>
         </div>
