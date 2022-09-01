@@ -33,7 +33,7 @@ function ToDoItem({ id, label, checked, onChange, onDelete, onDragDrop }) {
         onChange={() => onChange(id)}
         className='w-4 h-4 ring-3 focus:ring-0 focus:ring-white/[1.0] outline-0 bg-light-control-background-color border-gray-300 dark:bg-gray-700 dark:border-gray-600' />
       <label htmlFor={id} className="ml-2 w-full text-[19px] pt-[15px] pb-[12px] ligh text-gray-900 dark:text-gray-300">{label}</label>
-      {!checked && <button className='p-[10px] font-bold  text-light-very-light-gray dark:light-very-light-gray' onClick={() => onDelete(id)}><img src={cross} alt="cross icon" /></button>}
+      {!checked && <button className='block sm:hidden p-[10px] font-bold  text-light-very-light-gray dark:light-very-light-gray' onClick={() => onDelete(id)}><img src={cross} alt="cross icon" /></button>}
     </div>
   )
 }

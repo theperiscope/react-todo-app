@@ -70,10 +70,6 @@ input[type="checkbox"]:checked+label {
   @apply text-gray-300 dark:text-gray-600;
 }
 
-.checkbox-wrapper button {
-  display: none;
-}
-
 .checkbox-wrapper:first-of-type {
   @apply rounded-t-md
 }
