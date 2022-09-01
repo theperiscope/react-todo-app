@@ -29,14 +29,7 @@ function App() {
   const value = useMemo(() => ({ theme, setTheme }), [theme])
   const [filterName, setFilterName] = useState('all')
 
-  const [todos, setToDos] = useState([
-    { id: 'task-1', label: "Complete online JavaScript course", checked: true },
-    { id: 'task-2', label: "Jog around the park 3x", checked: false },
-    { id: 'task-3', label: "10 minutes meditation", checked: false },
-    { id: 'task-4', label: "Read for 1 hour", checked: false },
-    { id: 'task-5', label: "Pick up groceries", checked: false },
-    { id: 'task-6', label: "Complete Todo App on Frontend Mentor", checked: false },
-  ])
+  const [todos, setToDos] = useState([])
 
   const onFilterToDo = (e) => {
     setFilterName(e)
@@ -92,6 +85,20 @@ function App() {
       document.documentElement.classList.remove('dark')
     }
   })
+
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const todosInStorage = localStorage.getItem('todos')
+    todosInStorage && setToDos(JSON.parse(todosInStorage))
+    setIsLoading(false)
+  }, [])
+
+  useEffect(() => {
+    if (!isLoading) {
+      localStorage.setItem('todos', JSON.stringify(todos))
+    }
+  }, [todos, isLoading])
 
   return (
     <ThemeContext.Provider value={value} >
