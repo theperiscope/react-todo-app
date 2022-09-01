@@ -23,6 +23,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
          1. [Tailwind](#tailwind)
          1. [NPM packages](#npm-packages)
          1. [React](#react)
+         1. [`font-size` minimums on mobile devices](#font-size-minimums-on-mobile-devices)
       1. [Useful resources](#useful-resources)
    1. [Author](#author)
 
@@ -209,10 +210,19 @@ const getInitialTheme = () => {
   <div className={`filter ${currentFilter === 'all' && 'active'}`}>...</div>
   ```
 
+#### `font-size` minimums on mobile devices
+
+By default Safari on iOS will zoom in the screen to focus on an input field (i.e. the Add Todo input) if the font size is less than 16 pixels. We are using 12 pixels and setting `maximum-scale=1` for the viewport prevents the _16 pixels_ rule from being applied.
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+```
+
 ### Useful resources
 
 - [CSS at-rule: @media: hover media feature](https://caniuse.com/mdn-css_at-rules_media_hover)
 - [Discussion around @media hover and touch devices](https://stackoverflow.com/questions/23885255/how-to-remove-ignore-hover-css-style-on-touch-devices)
+- [16px or Larger Text Prevents iOS Form Zoom](https://css-tricks.com/16px-or-larger-text-prevents-ios-form-zoom/)
 
 ## Author
 
