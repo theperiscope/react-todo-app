@@ -24,8 +24,8 @@ function ToDoAdd({ onAdd }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="relative">
-        <div id="addCircle"></div>
-        <input id="addToDo" className="w-full placeholder-light-placeholder-color pt-[21px] pb-[17px] pl-[69px] text-[18px] text-black dark:text-white bg-light-very-light-gray dark:bg-dark-very-dark-desaturated-blue mt-[30px] mb-[25px] rounded-md border border-gray-200 dark:border-gray-700" type="text" placeholder="Create a new todo..." onChange={event => setTaskName(event.target.value)} value={taskName} />
+        <div id="addCircle" className='absolute left-[14px] sm:left-[26px] top-[50px]'></div>
+        <input id="addToDo" className="w-full placeholder-light-placeholder-color pt-[21px] pb-[17px] pl-[53px] sm:pl-[69px]  text-[12px] sm:text-[19px] text-black dark:text-white bg-light-very-light-gray dark:bg-dark-very-dark-desaturated-blue mt-[30px] mb-[25px] rounded-md border border-gray-200 dark:border-gray-700" type="text" placeholder="Create a new todo..." onChange={event => setTaskName(event.target.value)} value={taskName} />
       </div>
     </form>
   )

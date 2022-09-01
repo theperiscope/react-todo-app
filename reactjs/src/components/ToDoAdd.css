@@ -1,8 +1,4 @@
 #addCircle {
-  position:absolute;
-  left:25px;
-  top:50px;
-
   /*matches ToDoItem.css */
   width: 24px;
   height: 24px;
