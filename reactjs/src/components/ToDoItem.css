@@ -1,8 +1,5 @@
 .checkbox-wrapper input[type="checkbox"] {
   /* removing default appearance */
-  -moz-appearance:none;
-  -webkit-appearance:none;
-  -o-appearance:none;
   appearance: none;
   /* creating a custom design */
   width: 24px;
@@ -15,38 +12,49 @@
   -webkit-appearance: none;
   outline: none;
   cursor: pointer;
-  margin-left:10px;
-  margin-right:16px;
+  margin-left: 10px;
+  margin-right: 16px;
+
+  user-select: none;
+
+  pointer-events: none;
 
   @apply dark:bg-dark-very-dark-desaturated-blue dark:border-gray-600
-
 }
 
-input[type="checkbox"]:focus{
+input[type="checkbox"]:focus {
   outline: none !important;
 }
 
-input[type="checkbox"]:hover {
-  border:none;
-  padding: 1px;
-  border-radius: 100%;
-  /*background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);*/
-  background: linear-gradient(135deg, hsl(192, 100%, 67%) , hsl(280, 87%, 65%));
-}
+/* hover interacts with user input on touch devices. here we fix it by grouping all :hover rules into @media(hover: hover)
+ * https://caniuse.com/mdn-css_at-rules_media_hover
+ * needs fixing with something like https://stackoverflow.com/questions/23885255/how-to-remove-ignore-hover-css-style-on-touch-devices */
+@media (hover: hover) {
+  input[type="checkbox"]:hover {
+    border: none;
+    padding: 1px;
+    border-radius: 100%;
+    background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  }
 
-input[type="checkbox"]:hover::after {
-  border:none;
-  content: '';
-  display: block;
-  padding:11px;
-  border-radius: 100%;
-  background: #fff;
-  @apply dark:bg-dark-very-dark-desaturated-blue dark:border-gray-600
+  input[type="checkbox"]:hover::after {
+    border: none;
+    content: '';
+    display: block;
+    padding: 11px;
+    border-radius: 100%;
+    background: #fff;
+    @apply dark:bg-dark-very-dark-desaturated-blue dark:border-gray-600
+  }
+
+  .checkbox-wrapper:hover button {
+    display: unset;
+  }
 }
 
 input[type="checkbox"]:checked {
   position: static;
-  background: linear-gradient(135deg, hsl(192, 100%, 67%) , hsl(280, 87%, 65%));
+  background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
 input[type="checkbox"]:checked::after {
@@ -54,7 +62,7 @@ input[type="checkbox"]:checked::after {
   display: block;
   width: 24px;
   height: 24px;
-  background:url("../images/icon-check.svg") no-repeat 6px 7px;
+  background: url("../images/icon-check.svg") no-repeat 6px 7px;
 }
 
 input[type="checkbox"]:checked+label {
@@ -63,11 +71,9 @@ input[type="checkbox"]:checked+label {
 }
 
 .checkbox-wrapper button {
-  display:none;
+  display: none;
 }
 
-.checkbox-wrapper:hover button {
-  display: unset;
+.checkbox-wrapper:first-of-type {
+  @apply rounded-t-md
 }
-
-.checkbox-wrapper:first-of-type { @apply rounded-t-md  }
