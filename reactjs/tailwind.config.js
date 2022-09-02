@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    'fontFamily': {
+      'sans': ['Josefin Sans', 'sans-serif']
+    },
     extend: {
       height: {
         '300': '300px'

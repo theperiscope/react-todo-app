@@ -1,23 +1,13 @@
-.x1 {
-  @apply sm:rounded-bl-md xs:rounded-bl-md
- }
+.filter {
+  @apply text-light-placeholder-color text-[14px];
+}
 
- .x2 {
-  @apply sm:rounded-br-md xs:rounded-br-md
- }
+.filter.active {
+  @apply text-light-active-filter-color font-bold;
+}
 
- .x3 {
-  @apply rounded-md sm:rounded-none
- }
-
- .filter {
-  @apply text-light-placeholder-color text-[14px]
- }
-
- .filter.active {
-  @apply text-light-active-filter-color font-bold
- }
-
- .filter:hover {
-  @apply text-black
- }
+@media (hover: hover) {
+  .filter:hover {
+    @apply text-black;
+  }
+}

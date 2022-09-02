@@ -1,4 +1,4 @@
-import {useContext, createContext} from 'react'
+import { useContext, createContext } from 'react'
 
 export const themes = {
   light: {
@@ -15,8 +15,7 @@ export const themes = {
   },
 }
 
-export const useTheme = () => useContext(ThemeContext);
+export const useTheme = () => useContext(ThemeContext)
 
 // default value but really we are managing it via state, localStorage, change theme button, etc.
 export const ThemeContext = createContext(themes.light)
-

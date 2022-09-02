@@ -8,7 +8,7 @@ import { themes, ThemeContext } from './ThemeContext'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <ThemeContext.Provider value={themes.light} >
+    <ThemeContext.Provider value={themes.light}>
       <App />
     </ThemeContext.Provider>
   </React.StrictMode>

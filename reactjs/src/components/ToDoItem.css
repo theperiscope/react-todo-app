@@ -1,31 +1,3 @@
-.checkbox-wrapper input[type="checkbox"] {
-  /* removing default appearance */
-  appearance: none;
-  /* creating a custom design */
-  width: 24px;
-  height: 24px;
-  background: #fff;
-  border-radius: 50%;
-  vertical-align: middle;
-  border: 1px solid #ccc;
-  appearance: none;
-  -webkit-appearance: none;
-  outline: none;
-  cursor: pointer;
-  margin-left: 10px;
-  margin-right: 16px;
-
-  user-select: none;
-
-  pointer-events: none;
-
-  @apply dark:bg-dark-very-dark-desaturated-blue dark:border-gray-600
-}
-
-input[type="checkbox"]:focus {
-  outline: none !important;
-}
-
 /* hover interacts with user input on touch devices. here we fix it by grouping all :hover rules into @media(hover: hover)
  * https://caniuse.com/mdn-css_at-rules_media_hover
  * needs fixing with something like https://stackoverflow.com/questions/23885255/how-to-remove-ignore-hover-css-style-on-touch-devices */
@@ -66,8 +38,7 @@ input[type="checkbox"]:checked::after {
 }
 
 input[type="checkbox"]:checked+label {
-  text-decoration: line-through;
-  @apply text-gray-300 dark:text-gray-600;
+  @apply text-gray-300 dark:text-gray-600 line-through;
 }
 
 .checkbox-wrapper:first-of-type {
