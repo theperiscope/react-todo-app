@@ -1,32 +1,15 @@
 import { AppTitle } from './components/AppTitle'
 import Background from './components/Background'
-import NewChangeThemeButton from './components/NewChangeThemeButton'
+import ChangeThemeModeButton from './components/ChangeThemeModeButton'
 import { useEffect, useMemo, useState } from 'react'
-import { themes, ThemeContext } from './ThemeContext'
+import { ThemeContext } from './ThemeContext'
 import ToDoAdd from './components/ToDoAdd'
 import ToDoBar from './components/ToDoBar'
 import ToDoItemList from './components/ToDoItemList'
 
-const getInitialTheme = () => {
-  if (typeof window !== 'undefined' && window.localStorage) {
-    const storedPrefs = window.localStorage.getItem('theme') // get referenced color
-    if (typeof storedPrefs === 'string' && storedPrefs !== null) {
-      return storedPrefs === 'dark' ? themes.dark : themes.light
-    }
-
-    const userMedia = window.matchMedia('(prefers-color-scheme: dark)')
-
-    if (userMedia.matches) {
-      return themes.dark
-    }
-  }
-
-  return themes.light
-}
-
 function App() {
-  const [theme, setTheme] = useState(getInitialTheme())
-  const value = useMemo(() => ({ theme, setTheme }), [theme])
+  const [themeMode, setThemeMode] = useState(localStorage.getItem('themeMode') || 'auto')
+  const value = useMemo(() => ({ themeMode, setThemeMode }), [themeMode])
   const [filterName, setFilterName] = useState('all')
 
   const [todos, setToDos] = useState([])
@@ -77,18 +60,6 @@ function App() {
     setToDos(updatedToDos)
   }
 
-  useEffect(() => {
-    // https://tailwindcss.com/docs/dark-mode
-    if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  })
-
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -103,13 +74,55 @@ function App() {
     }
   }, [todos, isLoading])
 
+  // change theme based on the current state
+  useEffect(() => {
+    let matchMedia
+    const registerPrefersColorSchemeListener = () => {
+      matchMedia = window.matchMedia('(prefers-color-scheme: light)')
+      matchMedia.addEventListener('change', onPrefersLightChange)
+    }
+    const unregisterPrefersColorSchemeListener = () => {
+      if (matchMedia) matchMedia.removeListener(onPrefersLightChange)
+    }
+    const onPrefersLightChange = scheme => {
+      if (scheme.matches) {
+        document.documentElement.classList.remove('dark')
+      } else {
+        document.documentElement.classList.add('dark')
+      }
+    }
+
+    // always unregister, registration only needed for 'auto' themeMode
+    unregisterPrefersColorSchemeListener()
+
+    let theme
+    switch (themeMode) {
+      case 'light':
+      case 'dark':
+        theme = themeMode
+        break
+      case 'auto':
+        theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        registerPrefersColorSchemeListener() // start monitoring
+        break
+      default:
+        throw new Error('invalid themeMode value')
+    }
+
+    if (theme === 'light') {
+      document.documentElement.classList.remove('dark')
+    } else {
+      document.documentElement.classList.add('dark')
+    }
+  }, [themeMode])
+
   return (
     <ThemeContext.Provider value={value}>
       <Background />
       <div className="relative top-[60px] left-0 flex justify-center border-3 border-red-500">
         <div className="grid grid-cols-2 gap-0 content-start w-mobile sm:w-desktop">
           <AppTitle>TODO</AppTitle>
-          <NewChangeThemeButton />
+          <ChangeThemeModeButton />
           <div className="grid grid-cols-1 gap-0 mt-[8px] content-start w-mobile sm:w-desktop">
             <ToDoAdd onAdd={onAddToDo} />
             <ToDoItemList
