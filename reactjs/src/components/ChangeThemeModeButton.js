@@ -1,5 +1,3 @@
-import moon from '../images/icon-moon.svg'
-import sun from '../images/icon-sun.svg'
 import { useTheme } from '../ThemeContext'
 import './ChangeThemeModeButton.css'
 
@@ -30,24 +28,24 @@ function ChangeThemeModeButton() {
     <>
       <div className="custom-radios flex justify-end">
         <div>
-          <input type="radio" id="color-1" name="color" value="color-1" onChange={() => onChange('light')} checked={themeMode === 'light'}  />
-          <label for="color-1">
+          <input type="radio" id="themeMode-dark" name="themeMode" value="themeMode-dark" onChange={() => onChange('dark')} checked={themeMode === 'dark'}  />
+          <label for="themeMode-dark">
             <span>
               <em></em>
             </span>
           </label>
         </div>
         <div>
-          <input type="radio" id="color-2" name="color" value="color-2" onChange={() => onChange('auto')} checked={themeMode === 'auto'}  />
-          <label for="color-2">
+          <input type="radio" id="themeMode-auto" name="themeMode" value="themeMode-auto" onChange={() => onChange('auto')} checked={themeMode === 'auto'}  />
+          <label for="themeMode-auto">
             <span>
               <em></em>
             </span>
           </label>
         </div>
         <div>
-          <input type="radio" id="color-3" name="color" value="color-3" onChange={() => onChange('dark')} checked={themeMode === 'dark'}  />
-          <label for="color-3">
+          <input type="radio" id="themeMode-light" name="themeMode" value="themeMode-light" onChange={() => onChange('light')} checked={themeMode === 'light'}  />
+          <label for="themeMode-light">
             <span>
               <em></em>
             </span>

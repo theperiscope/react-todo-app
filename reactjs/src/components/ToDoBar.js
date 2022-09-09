@@ -6,15 +6,19 @@ function ToDoBar({ currentFilter, todos, onFilter, onClearCompleted }) {
     return todos.filter(task => !task.checked).length
   }, [todos])
 
+  const totalCompletedTasks = useMemo(() => {
+    return todos.length - totalLeftTasks
+  }, [todos, totalLeftTasks])
+
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3">
-      <div className="x1 bg-light-control-background-color dark:bg-dark-very-dark-desaturated-blue px-4 pt-4 pb-3 m-0 order-1 sm:order-1 text-left   sm:text-left  text-xs text-gray-900 dark:text-gray-300 sm:rounded-bl-md xs:rounded-bl-md">
+      <div className="x1 bg-light-control-background-color dark:bg-dark-very-dark-desaturated-blue px-4 pt-4 pb-3 m-0 order-1 sm:order-1 text-left   sm:text-left  text-xs text-gray-900 dark:text-gray-300 sm:rounded-bl-md xs:rounded-bl-md xs:rounded-tl-md">
         {totalLeftTasks} {totalLeftTasks === 1 ? 'item' : 'items'} left
       </div>
-      <div className="x2 bg-light-control-background-color dark:bg-dark-very-dark-desaturated-blue px-4 pt-4 pb-3 m-0 order-2 sm:order-3 text-right  sm:text-right text-sm text-gray-900 dark:text-gray-300 sm:rounded-br-md xs:rounded-br-md">
+      <div className="x2 bg-light-control-background-color dark:bg-dark-very-dark-desaturated-blue px-4 pt-4 pb-3 m-0 order-2 sm:order-3 text-right  sm:text-right text-sm text-gray-900 dark:text-gray-300 sm:rounded-br-md xs:rounded-br-md xs:rounded-tr-md">
         <ul>
           <li>
-            <button onClick={() => onClearCompleted()}>Clear Completed</button>
+            <button onClick={() => onClearCompleted()} className="disabled:text-light-placeholder-color" disabled={totalCompletedTasks === 0}>Clear Completed</button>
           </li>
         </ul>
       </div>

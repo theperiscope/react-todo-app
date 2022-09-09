@@ -32,15 +32,15 @@
 .custom-radios input[type='radio'] + label span em {
   display: inline-block;
 }
-.custom-radios input[type='radio']#color-1 + label span {
+.custom-radios input[type='radio']#themeMode-dark + label span {
   background-color: rgba(255, 255, 255, 0.13);
   background-image: url(../images/icon-moon.svg);
 }
-.custom-radios input[type='radio']#color-2 + label span {
+.custom-radios input[type='radio']#themeMode-auto + label span {
   background-color: rgba(255, 255, 255, 0.13);
   background-image: url(../images/light-dark.svg);
 }
-.custom-radios input[type='radio']#color-3 + label span {
+.custom-radios input[type='radio']#themeMode-light + label span {
   background-color: rgba(255, 255, 255, 0.13);
   background-image: url(../images/icon-sun.svg);
 }
