@@ -7,10 +7,10 @@ function ToDoAdd({ onAdd }) {
   const handleSubmit = event => {
     event.preventDefault()
 
-    if (!!taskName) {
+    if (!!taskName && taskName.trim().length > 0) {
       const newTask = {
         id: uuid(),
-        label: taskName,
+        label: taskName.trim(),
         checked: false,
       }
 
