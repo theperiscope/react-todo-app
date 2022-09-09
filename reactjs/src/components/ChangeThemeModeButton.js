@@ -20,40 +20,35 @@ function ChangeThemeModeButton() {
         throw new Error('invalid newMode value')
     }
 
-    // update app state
+    // update app state, will check updated local storage
     setThemeMode(newMode)
   }
 
-  return (
-    <>
-      <div className="custom-radios flex justify-end">
-        <div>
-          <input type="radio" id="themeMode-dark" name="themeMode" value="themeMode-dark" onChange={() => onChange('dark')} checked={themeMode === 'dark'}  />
-          <label for="themeMode-dark">
-            <span>
-              <em></em>
-            </span>
-          </label>
-        </div>
-        <div>
-          <input type="radio" id="themeMode-auto" name="themeMode" value="themeMode-auto" onChange={() => onChange('auto')} checked={themeMode === 'auto'}  />
-          <label for="themeMode-auto">
-            <span>
-              <em></em>
-            </span>
-          </label>
-        </div>
-        <div>
-          <input type="radio" id="themeMode-light" name="themeMode" value="themeMode-light" onChange={() => onChange('light')} checked={themeMode === 'light'}  />
-          <label for="themeMode-light">
-            <span>
-              <em></em>
-            </span>
-          </label>
-        </div>
-      </div>
-    </>
-  )
+  const modes = [
+    { id: 'themeMode-dark', themeMode: 'dark', bg: 'bg-iconDark' },
+    { id: 'themeMode-auto', themeMode: 'auto', bg: 'bg-iconLightDark' },
+    { id: 'themeMode-light', themeMode: 'light', bg: 'bg-iconLight' },
+  ]
+  const radioModes = modes.map(m => (
+    <div className='inline-block ml-2'>
+      <input
+        type="radio"
+        id={m.id}
+        name="themeMode"
+        value={m.id}
+        onChange={() => onChange(m.themeMode)}
+        checked={themeMode === m.themeMode}
+        className="hidden"
+      />
+      <label for={m.id} className="opacity-30 text-gray-800 text-sm;">
+        <span className={`inline-block w-[28px] h-[28px] -mt-[1px] mr-[4px] mb-0 ml-0 align-middle cursor-pointer bg-no-repeat bg-center text-center rounded-[50%] border-[1px] border-white/[.33] shadow bg-white/[.13] ${m.bg}`}>
+          <em className='inline-block'></em>
+        </span>
+      </label>
+    </div>
+  ))
+
+  return <div className="custom-radios flex justify-end mt-5">{radioModes}</div>
 }
 
 export default ChangeThemeModeButton

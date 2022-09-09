@@ -42,7 +42,10 @@ module.exports = {
         'desktopDark': "url('./images/bg-desktop-dark.jpg')",
         'desktopLight': "url('./images/bg-desktop-light.jpg')",
         'mobileDark': "url('./images/bg-mobile-dark.jpg')",
-        'mobileLight': "url('./images/bg-mobile-light.jpg')"
+        'mobileLight': "url('./images/bg-mobile-light.jpg')",
+        'iconLight': "url('./images/icon-sun.svg')",
+        'iconDark': "url('./images/icon-moon.svg')",
+        'iconLightDark': "url('./images/light-dark.svg')",
       },
       screens: {
         'xs': '375px',

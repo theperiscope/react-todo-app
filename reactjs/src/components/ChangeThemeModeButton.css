@@ -1,56 +1,7 @@
-.custom-radios {
-  margin-top: 22px;
-}
-.custom-radios div {
-  display: inline-block;
-  line-height: normal;
-  margin-left: 10px;
-}
-.custom-radios input[type='radio'] {
-  display: none;
-}
-.custom-radios input[type='radio'] + label {
-  color: #333;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  opacity: 0.3;
-}
-.custom-radios input[type='radio'] + label span {
-  display: inline-block;
-  width: 28px;
-  height: 28px;
-  margin: -1px 4px 0 0;
-  vertical-align: middle;
-  cursor: pointer;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.33);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
-  background-repeat: no-repeat;
-  background-position: center;
-  text-align: center;
-}
-.custom-radios input[type='radio'] + label span em {
-  display: inline-block;
-}
-.custom-radios input[type='radio']#themeMode-dark + label span {
-  background-color: rgba(255, 255, 255, 0.13);
-  background-image: url(../images/icon-moon.svg);
-}
-.custom-radios input[type='radio']#themeMode-auto + label span {
-  background-color: rgba(255, 255, 255, 0.13);
-  background-image: url(../images/light-dark.svg);
-}
-.custom-radios input[type='radio']#themeMode-light + label span {
-  background-color: rgba(255, 255, 255, 0.13);
-  background-image: url(../images/icon-sun.svg);
-}
+/* we can't use Tailwind's peer-checked because the span and em are nested */
 .custom-radios input[type='radio']:checked + label span em {
-  border-radius: 50%;
-  padding:18px;
-  margin-top: -6px;
-  margin-left: -6px;
-  border: 1px solid rgba(255, 255, 255, 0.83);
+  @apply rounded-[50%] p-[18px] -mt-[6px] -ml-[6px] border-[1px] border-white/[.83]
 }
 .custom-radios input[type='radio']:checked + label {
-  opacity:1
+  @apply opacity-100
 }
