@@ -24,6 +24,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
          1. [NPM packages](#npm-packages)
          1. [React](#react)
          1. [`font-size` minimums on mobile devices](#font-size-minimums-on-mobile-devices)
+         1. [`<meta name="theme-color:">` for both light and dark themes](#meta-nametheme-color-for-both-light-and-dark-themes)
       1. [Useful resources](#useful-resources)
    1. [Author](#author)
 
@@ -216,6 +217,15 @@ By default Safari on iOS will zoom in the screen to focus on an input field (i.e
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+```
+
+#### `<meta name="theme-color:">` for both light and dark themes
+
+The `manifest.json` file also has settings for theme and background color but the presence of the HTML `meta` tags overrides the value.
+
+```html
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafafa">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161722">
 ```
 
 ### Useful resources
