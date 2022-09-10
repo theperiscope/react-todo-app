@@ -18,7 +18,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
          1. [Disable :hover pseudo-class on mobile](#disable-hover-pseudo-class-on-mobile)
          1. [Better control over todo item styling and function on mobile](#better-control-over-todo-item-styling-and-function-on-mobile)
          1. [Drag-and-Drop](#drag-and-drop)
-         1. [Theming](#theming)
+         1. [Light/Dark/Auto Theming](#lightdarkauto-theming)
          1. [Javascript: move array element from index to another](#javascript-move-array-element-from-index-to-another)
          1. [Tailwind](#tailwind)
          1. [NPM packages](#npm-packages)
@@ -119,28 +119,19 @@ By default, data/elements cannot be dropped in other elements. To allow a drop, 
   }
 ```
 
-#### Theming
+#### Light/Dark/Auto Theming
 
-Detect preferred theme on first access and store in local storage
+Theming is implemented as a 3-way mode switch.
+1. _Light_ or _Dark_, requested specifically by user
+1. _Auto_, based on [@media prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
+   1. event listener is attached so app switches automatically `light -> dark` or `dark -> light` when it changes (e.g. when Night Shift ends on iOS devices)
+   1. the `prefers-colors-scheme` comes with issues
+      1. Firefox's [privacy.resistFingerprinting](https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/examine_and_edit_css/index.html#view-media-rules-for-prefers-color-scheme) seems to make it report always 'light'
 
-```js
-const getInitialTheme = () => {
-  if (typeof window !== "undefined" && window.localStorage) {
-    const storedPrefs = window.localStorage.getItem("theme")
-    if (typeof storedPrefs === "string" && storedPrefs !== null) {
-      return storedPrefs === "dark" ? themes.dark : themes.light
-    }
+         > NOTE: If privacy.resistFingerprinting has been set true, the prefers-color-scheme preference is forced to light. You must set `privacy.resistFingerprinting` to `false` in order to use this feature.
 
-    const userMedia = window.matchMedia("(prefers-color-scheme: dark)")
-
-    if (userMedia.matches) {
-      return themes.dark
-    }
-  }
-
-  return themes.light
-}
-```
+      1. If the OS (e.g. Windows) is in dark mode it doesn't mean that the browser will be automatically in dark mode
+      1. In desktop browsers, user can have a dark theme active while browser is in light mode
 
 #### Javascript: move array element from index to another
 
